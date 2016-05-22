@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>箭头函数</title>
+</head>
+<body>
+<span id="arrow">使用箭头函数</span>
+<p>
+    箭头函数 1、简写形式的函数表达式，2、它拥有词法作用域的this值（即不会新产生自己作用域下的this, arguments, super 和 new.target 等对象）。此外，箭头函数总是匿名的。
+</p>
+<script>
+    var f=() =>{'use strict';return this};
+    var res = f()===window;
+    console.log(f()===window);
+
+//    var age = 10;
+//    function Person(){
+//        var self = this;
+//        self.age = 0;
+//        setInterval(function growUp(){
+//            self.age++;
+////            age++;
+//            console.log(self.age);
+//        },1000);
+//    }
+//    var p = new Person();
+//    console.log(p);
+
+    function Person(){
+        this.age=3;
+        setInterval(()=>{
+            this.age++;
+//            console.log(this.age);
+        },1000)
+    }
+
+    var s = new Person();
+    console.log(s);
+
+    var adder = {
+        base:1,
+        add:function(a){
+            var f = v => v+this.base;
+            return f(a);
+        },
+        addThruCall:function(a){
+            var f = v => v+this.base;
+            var b = {
+                base:2
+            };
+            return f.call(b,a);
+        }
+    };
+
+//    var adder = {
+//        base:1,
+//        add:function(a){
+//            var f = function(v){
+//                v+this.base;
+//            }
+//            return f(a);
+//        },
+//        addThruCall:function(a){
+//            var f = function(v){
+//                v+this.base;
+//            }
+//            var b = {
+//                base:2
+//            };
+//            return f.call(b,a);
+//        }
+//    };
+
+    console.log(adder.add(2));
+    console.log(adder.addThruCall(2));
+
+    window.onload = function(){
+        var arrow = document.getElementById('arrow');
+
+//        arrow.onclick = showAlert;
+        arrow.onclick = function(e)
+        {
+            console.log(e);
+//            alert('12');
+        };
+//        arrow.onclick = ( e => {alert('123');} );
+
+        function showAlert()
+        {
+            alert('1');
+        }
+    };
+
+//    arrow.onclick(e => showAlert());
+</script>
+</body>
+</html>

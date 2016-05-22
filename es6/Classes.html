@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Classes</title>
+</head>
+<body>
+<script>
+
+    class Polygon{
+        constructor(x,y){
+            this.x = x;
+            this.y = y;
+        }
+        //原型方法
+        getArea(){
+            return this.calcArea();
+        }
+        calcArea(){
+            return this.x*this.y;
+        }
+        //静态方法
+        static distance(a,b){
+            const dx = a.x - b.x;
+            const dy = a.y - b.y;
+            console.log(dx +'#'+ dy);
+            return Math.sqrt(dx*dy + dy*dy);
+        }
+    }
+
+    const p1 = new Polygon(5, 5);
+    const p2 = new Polygon(10, 10);
+    console.log(p1);
+    console.log(Polygon.distance(p1, p2));
+
+//    var p = new Polygon(10,2);
+//    res = p.getArea();
+//    console.log(res);
+//    console.log(p);
+
+</script>
+</body>
+</html>
