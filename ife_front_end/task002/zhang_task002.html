@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>task002</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        header {
+            width: 100%;
+            height: 100px;
+            background-color: gray;
+            border: 1px solid #f7ecb5;
+        }
+        
+        header img {
+            height: 80px;
+            margin: 10px 50px;
+            float: left;
+        }
+        
+        header div {
+            width: 40%;
+            text-align: center;
+            float: left;
+            margin: 25px;
+        }
+        
+        header div a {
+            font-size: 30px;
+        }
+        
+        header nav {
+            width: 40%;
+            float: right
+        }
+        
+        header nav ul {
+            list-style: none;
+        }
+        
+        header nav ul li {
+            width: 80px;
+            margin: 10px;
+            float: right;
+        }
+        
+        #title {
+            height: 60px;
+            background-color: beige;
+            position: relative;
+        }
+        
+        #title span {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 50%;
+            height: 50%;
+            margin: auto;
+        }
+        
+        #content {
+            height: auto;
+            width: 100%;
+        }
+        
+        section #left {
+            width: 20%;
+            background-color: #1fb5ad;
+            float: left;
+        }
+        
+        section #mid {
+            width: 50%;
+            background-color: #1d97d0;
+            float: left;
+        }
+        
+        section #right {
+            width: 30%;
+            background-color: #27b8b1;
+            float: left;
+        }
+        
+        footer {
+            clear: both;
+            background-color: #2b542c
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <header>
+            <img src="./img/wx.png" alt="">
+            <div>
+                <a href="http://ife.baidu.com/task/detail?taskId=1">网站标题</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="">nav1</a></li>
+                    <li><a href="">nav2</a></li>
+                    <li><a href="">nav3</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div id="title">
+            <span>标题标题标题标题标题标题标题标题标题</span>
+        </div>
+        <section id="content">
+            <div id="left">
+                <ul>
+                    <li>wx:<img src="./img/wx.png" alt=""></li>
+                </ul>
+            </div>
+            <div id="mid">
+                <p>
+                    Getting started
+                </p>
+                <article>
+                    In order to start this <a href="http://facebook.github.io/react/docs/tutorial.html">tutorial</a> , we're going to require a running server. This will serve purely as an API endpoint which we'll use for getting and saving data. In order to make this as easy as possible, we've created a simple server in a number of scripting languages that does exactly what we need it to do. You can view the source or download a zip file containing everything needed to get started. For sake of simplicity, the server we will run uses a JSON file as a database. You would not run this in production but it makes it easy to simulate what you might do when consuming an API. Once you start the server, it will support our API endpoint and it will also serve the static pages we need.
+                </article>
+                <table border="1">
+                    <tr>
+                        <th>1 </th>
+                        <th>2 </th>
+                        <th>3 </th>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td colspan="2">5</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="right">
+                <form action="">
+                    <section>
+                        text :
+                        <input type="text"> password:
+                        <input type="password"> repasswd:
+                        <input type="password"> email:
+                        <input type="email"> search:
+                        <input type="search">
+                    </section>
+                    <section>
+                        <div>
+                            <span>language</span>
+                            <select name="" id="">
+                                <option value="1">js</option>
+                                <option value="1">node</option>
+                                <option value="1">react</option>
+                            </select>
+                            <label for="male">
+                                male
+                                <input type="radio" id="male" name="male" checked>
+                            </label>
+                            <label for="female">
+                                female
+                                <input type="radio" id="female" name="male">
+                            </label>
+                        </div>
+                        <div>
+                            <label for="sport">
+                                sport
+                                <input type="checkbox" id="sport">
+                            </label>
+                            <label for="music">
+                                music
+                                <input type="checkbox" id="music">
+                            </label>
+                            <label for="read">
+                                read
+                                <input type="checkbox" id="read">
+                            </label>
+                        </div>
+                        <div>
+                            <textarea name="txt" id="txt" cols="30" rows="10"></textarea>
+                        </div>
+                    </section>
+                    <section>
+                        <input type="button" value="button">
+                        <input type="submit" value="submit">
+                        <input type="reset" value="reset">
+                    </section>
+                </form>
+            </div>
+        </section>
+        <footer>
+            wx <img src="./img/wx.png" alt="wx">
+        </footer>
+    </div>
+</body>
+
+</html>
