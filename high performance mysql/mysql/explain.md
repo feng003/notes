@@ -42,17 +42,17 @@
     如果是impossible where 表示用不着where，一般就是没查出来啥。
     如果此信息显示Using filesort或者Using temporary的话会很吃力，WHERE和ORDER BY的索引经常无法兼顾，如果按照WHERE来确定索引，那么在ORDER BY时，就必然会引起Using filesort，这就要看是先过滤再排序划算，还是先排序再过滤划算。
 
-![image](./explain.png)   
+![image](./image/explain.png)   
 
     EXPLAIN select * from user LEFT JOIN money_log ON `user`.id = money_log.userid where `user`.username= '888888';
 
 ### 给money_log表 username添加索引之后的查询
 
-![image](./explain3.png)
+![image](./image/explain3.png)
 
     EXPLAIN select * from user LEFT JOIN money_log ON `user`.id = money_log.userid where `user`.username= '888888';
 
-![image](./explain2.png)   
+![image](./image/explain2.png)   
 
     EXPLAIN select * from user LEFT JOIN money_log ON `user`.id = money_log.userid where `money_log`.userid= '888888';
 
