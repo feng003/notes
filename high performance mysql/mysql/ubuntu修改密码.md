@@ -3,7 +3,7 @@
     1. sudo service mysql stop
     2. sudo mysqld_safe --user=mysql --skip-grant-tables --skip-networking
 
-![password](./password.png)
+![password](./image/password.png)
 
     3. ctrl+T重开一个终端以root身份登录mysql
     mysql -u root mysql
