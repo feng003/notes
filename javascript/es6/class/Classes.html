@@ -5,7 +5,8 @@
     <title>Classes</title>
 </head>
 <body>
-<script>
+    <script src="../browser.js"></script>
+<script type="text/babel">
 
     class Polygon{
         constructor(x,y){
@@ -28,10 +29,20 @@
         }
     }
 
+    class rectang extends Polygon{
+        constructor(x,y){
+            super(x,y);
+            this.sum = x+y;
+            console.log(this.sum);
+        }
+    }
+
     const p1 = new Polygon(5, 5);
     const p2 = new Polygon(10, 10);
     console.log(p1);
     console.log(Polygon.distance(p1, p2));
+
+    
 
 //    var p = new Polygon(10,2);
 //    res = p.getArea();

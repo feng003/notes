@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="http://apps.bdimg.com/libs/jquery/1.6.4/jquery.min.js"></script>
+<script src="../browser.js"></script>
+<script type="text/babel">
+    class Widget{
+        constructor(w,h){
+            this.w = w || 100;
+            this.h = h || 100;
+            this.$elem = null;
+        }
+        render($where){
+            if(this.$elem){
+                this.$elem.css({
+                    w:this.w+"px",
+                    h:this.h+"px"
+                }).appendTo($where);
+            }
+        }
+    }
+
+    class Button extends Widget{
+        constructor(w,h,label){
+            super(w,h);
+            this.label  = label || "Default";
+            this.$elem = $("<button>").text(this.label);
+        }
+        render($where){
+            super.render($where);
+            this.$elem.click(this.onClick.bind(this));
+        }
+        onClick(evt){
+            console.log("button '" + this.label + "' clicked!");
+        }
+    }
+
+    $("document").ready(function(){
+        var $body = $(document.body);
+        var btn1 = new Button(125,30,"hello");
+        var btn2 = new Button(150,40,"Button");
+
+        btn1.render($body);
+        btn2.render($body);
+    })
+</script>
+</body>
+</html>

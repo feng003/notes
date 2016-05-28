@@ -1,6 +1,6 @@
 ### 行为委托
 
-> 委托理论
+> 委托理论  Object.create()
 
     Object.create(proto,[propertiesObject]) 创建一个拥有指定原型和若干个指定属性的对象
 
@@ -15,12 +15,3 @@
         this.setID(ID);
         this.label = Label;
     }
-
-
-### 类与对象
-
-### 更简洁的设计
-
-### 更好的语法
-
-### 内省

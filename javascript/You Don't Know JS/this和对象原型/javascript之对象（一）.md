@@ -29,8 +29,8 @@
 
 3. 内容   . 操作符 或者 [] 操作符
 
-##### 可结算属性名
-##### 属性与方法
+###### 1 可结算属性名
+###### 2 属性与方法
 
     function foo(){
         console.log('foo');
@@ -45,8 +45,8 @@
     someFoo;
     myObject.someFoo;
 
-##### 数组 []
-##### 复制对象 (浅复制   深复制)
+###### 3 数组 []
+###### 4 复制对象 (浅复制   深复制)
 
     //TODO
     function otherFunction(){}
@@ -64,7 +64,7 @@
     }
     otherArray.push(otherObject,myObject);
 
-##### 属性描述符(defineProperty())
+###### 5 属性描述符(defineProperty())
 
     var myObject = { a:2}
     Object.getOwnPropertyDescriptor(myObject,"a");
