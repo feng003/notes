@@ -1,12 +1,12 @@
 # RNotes
 reading notes
 
-[mysql](./high performance mysql)
+[design](./design)
 
 [ife](./ife_front_end)
 
-[java](./java_OOP)
+[java](./java)
 
-[js design](./javascript design)
+[js](./javascript)
 
-[js](./You Don't Know JS)
+[mysql](./mysql)
