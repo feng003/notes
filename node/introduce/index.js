@@ -1,4 +1,10 @@
 var server = require('./server');
 var router = require('./router');
+var requestHandlers = require('./requestHandlers');
 
-server.start(router.route);
+var handle = {};
+handle['/'] = requestHandlers.start;
+handler['/start'] = requestHandlers.start;
+handler['/upload'] = requestHandlers.upload;
+
+server.start(router.route,handler);   //函数式编程

@@ -2,7 +2,7 @@
 var http = require('http');
 var url  = require('url');
 
-function start(route){
+function start(route,handle){
     function onRequest(req,res){
     //    var str = JSON.stringify(req);
     //    console.log('1'+str);
@@ -10,7 +10,7 @@ function start(route){
         console.log("Request for "  + pathname +  " received.");
         //console.log("Request received.");
 
-        route(pathname);
+        route(handler,pathname);
 
         res.writeHead(200,{"Content-Type":'text/plain'});
         res.write("Hello node");
