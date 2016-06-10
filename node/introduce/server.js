@@ -4,7 +4,7 @@ var url  = require('url');
 
 function start(){
     function onRequest(req,res){
-        console.log('1'+req);
+        console.log('1'+ JSON.stringify(req));
         var pathname = url.parse(req.url).pathname;
         console.log("Request for "  + pathname +  " received.");
         //console.log("Request received.");
