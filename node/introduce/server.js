@@ -4,11 +4,14 @@ var url  = require('url');
 
 function start(){
     function onRequest(req,res){
-        var str = JSON.stringify(req);
-        console.log('1' + str);
+    //    var str = JSON.stringify(req);
+    //    console.log('1'+str);
         var pathname = url.parse(req.url).pathname;
         console.log("Request for "  + pathname +  " received.");
         //console.log("Request received.");
+
+        route(pathname);
+
         res.writeHead(200,{"Content-Type":'text/plain'});
         res.write("Hello node");
         res.end();
