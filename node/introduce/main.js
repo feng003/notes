@@ -3,9 +3,9 @@ var http    = require('http');
 // createServer 函数 返回一个对象
 http.createServer(function(req,res){
     console.log("Request received.");
-    req.writeHead(200,{"Content-Type":'text/plain'});
-    req.write("Hello node");
-    req.end();
+    res.writeHead(200,{"Content-Type":'text/plain'});
+    res.write("Hello node");
+    res.end();
 }).listen(8888);
 
 console.log("Server has started.");
