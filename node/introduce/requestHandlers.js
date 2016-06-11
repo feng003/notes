@@ -6,20 +6,28 @@
 
 var exec = require('child_process').exec;
 
-function start(){
+function start(res){
     console.log("request handle 'start' was called");
     var content = "empty";
-    exec('ls -lah',
-        function(error,stdout,stderr){
-            content = sedout;
-        }
-    );
-    return content;
+    //exec('ls -lah',
+    // exec('find / ',
+    //   function(error,stdout,stderr){
+    //        content = stdout;
+    //    }
+    // );
+    // return content;
+	exec("ls -lah",  function  (error, stdout, stderr)  {
+                 res.writeHead(200,  {"Content-Type":  "text/plain"});
+                 res.write(stdout);
+                 res.end();  });
 }
 
-function upload(){
+function upload(res){
     console.log("request handler ' upload' was called");
-    return "hello upload";
+   // return "hello upload";
+  res.writeHead(200,  {"Content-Type":  "text/plain"});
+  res.write("Hello Upload");
+  res.end();
 }
 
 exports.start = start;

@@ -10,13 +10,11 @@ function start(route,handle){
         console.log("Request for "  + pathname +  " received.");
         //console.log("Request received.");
 
-        var content = route(handle,pathname);
+        //var content = route(handle,pathname);
+        var content = route(handle,pathname,res);
 
-        res.writeHead(200,{"Content-Type":'text/plain'});
-        res.write(content);
-        res.end();
     }
-    http.createServer(onRequest).listen(8888);
+    http.createServer(onRequest).listen(8800);
     console.log('Server has started.');
 }
 
