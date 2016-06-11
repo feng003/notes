@@ -3,10 +3,10 @@
 //     console.log("request handle 'start' was called");
 //     return "hello start";
 // }
-
+var querystring = require("querystring");
 var exec = require('child_process').exec;
 
-function index(response){
+function index(response , postData){
     console.log("Request handler 'start' was called.");
 
     var body = '<html>'+
@@ -27,7 +27,7 @@ function index(response){
     response.end();
 }
 
-function start(res){
+function start(res,postData){
     console.log("request handle 'start' was called");
     var content = "empty";
     //exec('ls -lah',
@@ -43,7 +43,7 @@ function start(res){
                  res.end();  });
 }
 
-function find(response)  {
+function find(response,postData)  {
   console.log("Request handler 'find' was called.");
 
   exec("find /",    { timeout:  10000, maxBuffer:  20000*1024  },    function  (error, stdout, stderr)  {
@@ -52,11 +52,12 @@ function find(response)  {
       response.end();    });
 }
 
-function upload(res){
+function upload(res,postData){
     console.log("request handler ' upload' was called");
    // return "hello upload";
   res.writeHead(200,  {"Content-Type":  "text/plain"});
-  res.write("Hello Upload");
+  response.write("You've sent: " + querystring.parse(postData).text);
+  //res.write("Hello Upload");
   res.end();
 }
 
