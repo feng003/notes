@@ -7,7 +7,7 @@ var querystring = require("querystring");
 var exec = require('child_process').exec;
 
 function index(response , postData){
-    console.log("Request handler 'start' was called.");
+    console.log("Request handler 'index' was called.");
 
     var body = '<html>'+
     '<head>'+
