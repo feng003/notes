@@ -1,5 +1,6 @@
 
-function route(handle , pathname , res){
+function route(handle , pathname , res)
+{
     console.log('request for ' + pathname);
     if(typeof handle[pathname] === 'function')
     {
