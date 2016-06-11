@@ -56,7 +56,7 @@ function upload(res,postData){
     console.log("request handler ' upload' was called");
    // return "hello upload";
   res.writeHead(200,  {"Content-Type":  "text/plain"});
-  response.write("You've sent: " + querystring.parse(postData).text);
+  res.write("You've sent: " + querystring.parse(postData).text);
   //res.write("Hello Upload");
   res.end();
 }
