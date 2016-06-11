@@ -41,4 +41,5 @@ function upload(res){
 }
 
 exports.start = start;
+exports.find = find;
 exports.upload = upload;
