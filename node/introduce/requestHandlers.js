@@ -1,7 +1,20 @@
 
+// function start(){
+//     console.log("request handle 'start' was called");
+//     return "hello start";
+// }
+
+var exec = require('child_process').exec;
+
 function start(){
     console.log("request handle 'start' was called");
-    return "hello start";
+    var content = "empty";
+    exec('ls -lah',
+        function(error,stdout,stderr){
+            content = sedout;
+        }
+    );
+    return content;
 }
 
 function upload(){
