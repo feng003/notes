@@ -16,6 +16,7 @@ function index(response , postData){
     '</head>'+
     '<body>'+
     '<form action="/upload" method="post">'+
+    '<input name="title" type="text" />'+
     '<textarea name="text" rows="20" cols="60"></textarea>'+
     '<input type="submit" value="Submit text" />'+
     '</form>'+

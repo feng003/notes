@@ -2,6 +2,8 @@
 
 [fs](http://nodeapi.ucdok.com/api/fs.html)
 
+[events](http://nodeapi.ucdok.com/api/events.html)
+
 [http](http://nodeapi.ucdok.com/api/http.html)
 
 [url](http://nodeapi.ucdok.com/api/url.html)
