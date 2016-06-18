@@ -48,6 +48,10 @@ router.get('/time',function(req, res, next){
     res.send(' The time is ' + new Date().toString());
 });
 
+router.get('/testM', function(req, res, next) {
+  res.render('post', { title: '发表' });
+});
+
 router.get('/readme',function(req,res){
     res.send('../readme.md');
 });
