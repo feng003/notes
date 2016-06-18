@@ -1,3 +1,4 @@
+## 作用域包含了一系列的“气泡”，每一个都可以作为容器，其中包含了标识符（变量、函数）的定义。
 
 >1、函数作用域
 
@@ -12,7 +13,7 @@
 
     function doSth(a)
     {
-        b = a + doSthElse( a * 2);        
+        b = a + doSthElse( a * 2);
     }
     function doSthElse(a)
     {
