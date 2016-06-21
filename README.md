@@ -8,8 +8,8 @@ reading notes
 
 [java](./java)
 
-[js](./javascript)
+[javascript](./javascript)
 
-[mysql](./mysql)
+[SQL](./SQL)
 
 [node](./node)
