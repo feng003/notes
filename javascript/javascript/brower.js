@@ -23,26 +23,8 @@ var client = function(){
         win:false,
         mac:false,
         x11:false
-    }
-
-    return {
-        engine:engine,
-        brower:brower,
-        system:system,
-
-        <!-- 移动设备 -->
-        iphone:false,
-        ipod:false,
-        ipad:false,
-        ios:false,
-        android:false,
-        nokiaN:false,
-        winMobole:false,
-
-        <!-- 游戏系统 -->
-        wii:false,
-        ps:false,
     };
+
     var ua = navigator.userAgent;
     if(window.opera){
         engine.ver = brower.ver = window.opera.version();
@@ -69,32 +51,89 @@ var client = function(){
             }
             brower.safari = brower.ver = safariVersion;
         }
-    }else if (/KHTML\/(S+)/.test(ua)||/Konqueror\([^;]+)/.test(ua)) {
+    }else if (/KHTML\/(S+)/.test(ua) || /Konqueror\/([^;]+)/.test(ua)) {
         engine.ver = brower.ver = RegExp["$1"];
         engine.khtml = brower.konq = parseFloat(engine.ver);
     }else if (/rv:([^\)]+)\) Gecko\/d{8}/.test(ua)) {
         engine.ver = RegExp["$1"];
         engine.gecko = parseFloat(engine.ver);
 
-        if(/Firefox\(S+)/.test(ua)){
+        if(/Firefox\/ (\S+) /.test(ua)){
             brower.ver = RegExp["$1"];
             brower.firefox = parseFloat(brower.ver);
         }
-    }else if (/MISE ([^;]+)/.test(ua)) {
+    }else if (/MSIE ([^;]+)/.test(ua)) {
         engine.ver = brower.ver = RegExp["$1"];
-        engine.ie = brower.konq = parseFloat(engine.ver);
+        engine.ie   = brower.konq = parseFloat(engine.ver);
     }
     brower.ie = engine.ie;
     brower.opera = engine.opera;
 
     var p = navigator.platform;
-    system.win = p.indexOf("Win") == 0;
-    system.mac = p.indexOf("Mac") == 0;
-    system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+    system.win = (p.indexOf("Win") === 0);
+    system.mac = (p.indexOf("Mac") === 0);
+    system.x11 = (p == "X11") || (p.indexOf("Linux") === 0);
+
+    if(system.win){
+        if(/Win(?:dows)?([^do]{2})\s?(\d+\.\d+)?/.test(ua)){
+            if(RegExp["$1"] == "NT"){
+                switch (RegExp["$2"]) {
+                    case "5.0":
+                        system.win = "2000";
+                        break;
+                    case "5.1":
+                        system.win = "XP";
+                        break;
+                    case "6.0":
+                        system.win = "Vista";
+                        break;
+                    case "6.1":
+                        system.win = "7";
+                        break;
+                    default:
+                        system.win = "NT";
+                        break;
+                }
+            }else if(RegExp["$1"] == "9x"){
+                system.win = "ME";
+            }else{
+                system.win = RegExp["$1"];
+            }
+        }
+    }
+
+    system.iphone = ua.indexOf("iPhone") > -1;
+    system.ipod = ua.indexOf("iPod") > -1;
+    system.ipad = ua.indexOf("iPad") > -1;
+    system.nokiaN = ua.indexOf("nokiaN") > -1;
+
+    if(system.win == "CE"){
+        system.winMobile = system.win;
+    }else if(system.win == "Ph"){
+        if(/Windows Phone OS (\d+.\d+)/.test(ua)){
+            system.win = "Phone";
+            system.winMobile = parseFloat(RegExp["$1"] );
+        }
+    }
+
+    if(system.mac && ua.indexOf("Mobile") > -1){
+        if(/CPU (?:iPhone)?OS (\d+_\d+)/.test(ua)){
+            system.ios = parseFloat(RegExp.$1.replace("_","."));
+        }else{
+            system.ios = 2;
+        }
+    }
+
+    if(/Android(\d+\.\d+)/.test(ua)){
+        system.android = parseFloat(RegExp.$1);
+    }
+
+    system.wii = ua.indexOf('Wii') > -1;
+    system.ps = /playstation/i.test(ua);
 
     return {
         engine:engine,
         brower:brower,
         system:system
-    }
+    };
 }();
