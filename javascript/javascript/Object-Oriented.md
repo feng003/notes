@@ -30,7 +30,11 @@
     修改属性默认的特性 object.defineProperty()
 
     2. 访问器属性
+    configurable
+    enumerable
+    get
+    set
 
-> 创建对象
+###### 定义多个属性 Object.defindeProperties()
 
-> 继承
+###### 读取属性的特性 Object.getOwnPropertyDescriptor()
