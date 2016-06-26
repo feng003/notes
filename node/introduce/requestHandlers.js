@@ -62,14 +62,23 @@ function upload(res, postData) {
     res.write("You've sent: " + querystring.parse(postData).text);
     res.end();
 }
+/**
+ * mongo 连接测试
+ * @param res
+ */
 function mongo(res){
     MongoClient.connect(url, function(err, db) {
         assert.equal(null, err);
         console.log("Connected correctly to server.");
         db.close();
     });
+    res.end();
 }
 
+/**
+ * mongo 插入数据
+ * @param res
+ */
 function mongoinsert(res)
 {
     var insertDocument = function(db,callback){
@@ -98,7 +107,9 @@ function mongoinsert(res)
             "restaurant_id" : "41704620"
         },function(err,result){
             assert.equal(err,null);
-            console.log('Inserted a document into the restaurants collection.');
+            res.writeHead(200, {"Content-Type": "text/plain"});
+            res.write("Inserted a document into the restaurants collection.");
+            res.end();
             callback();
         });
     };
@@ -109,8 +120,13 @@ function mongoinsert(res)
             db.close();
         });
     });
+    res.end();
 }
 
+/**
+ * mongo 查找数据
+ * @param res
+ */
 function mongofind(res) {
     console.log("request handler ' mongofind' was called");
     var findRestaurants = function (db, callback) {
@@ -119,23 +135,28 @@ function mongofind(res) {
             console.log(typeof doc);
             assert.equal(err, null);
             if (doc != null) {
-                res.writeHead(200, {"Content-Type": "text/plain"});
-                res.write("mongofind: " + JSON.stringify(doc));
-                res.end();
+                //res.writeHead(200, {"Content-Type": "text/plain"});
+                console.log("mongofind: " + JSON.stringify(doc));
+                //res.write("mongofind: " + JSON.stringify(doc));
+                //res.end();
             } else {
                 callback();
             }
         });
     };
-
     MongoClient.connect(url, function (err, db) {
         assert.equal(null, err);
         findRestaurants(db, function () {
             db.close();
         });
     });
+    res.end();
 }
 
+/**
+ * mongo 删除数据
+ * @param res
+ */
 function mongodel(res) {
     var removeRestaurants = function (db, callback) {
         db.collection('restaurants').deleteMany(
@@ -153,7 +174,7 @@ function mongodel(res) {
             db.close();
         });
     });
-
+    res.end();
 }
 
 exports.index = index;
