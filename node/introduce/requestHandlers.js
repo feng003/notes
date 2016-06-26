@@ -67,7 +67,7 @@ function upload(res,postData){
   res.end();
 }
 
-function mongo(res){
+function mongofind(res){
     console.log("request handler ' mongo' was called");
     var findRestaurants = function(db, callback) {
     var cursor =db.collection('restaurants').find( );
@@ -82,11 +82,30 @@ function mongo(res){
   };
 
   MongoClient.connect(url, function(err, db) {
-  assert.equal(null, err);
-  findRestaurants(db, function() {
-      db.close();
-    });
+      assert.equal(null, err);
+      findRestaurants(db, function() {
+          db.close();
+      });
   });
+}
+
+function mongodel(res){
+    var removeRestaurants = function(db, callback) {
+       db.collection('restaurants').deleteMany(
+          { "borough": "Manhattan" },
+          function(err, results) {
+             console.log(results);
+             callback();
+          }
+       );
+   };
+
+   MongoClient.connect(url, function(err, db) {
+      assert.equal(null, err);
+      removeRestaurants(db, function() {
+          db.close();
+      });
+    });
 
 }
 
@@ -94,4 +113,4 @@ exports.index   = index;
 exports.start     = start;
 exports.find     = find;
 exports.upload = upload;
-exports.mongo = mongo;
+exports.mongofind = mongofind;
