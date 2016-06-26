@@ -8,6 +8,8 @@ handler['/index'] = requestHandlers.index;
 handler['/start'] = requestHandlers.start;
 handler['/upload'] = requestHandlers.upload;
 handler['/find']  = requestHandlers.find;
+handler['/mongo'] = requestHandlers.mongo;
+handler['/mongoinsert'] = requestHandlers.mongoinsert;
 handler['/mongofind'] = requestHandlers.mongofind;
 handler['/mongodel'] = requestHandlers.mongodel;
 
