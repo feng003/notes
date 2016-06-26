@@ -1,8 +1,8 @@
-var mongodb = require('mongodb');
+var mongodb       = require('mongodb');
 var MongoClient = mongodb.MongoClient;
-var assert = require('assert');
+var assert      = require('assert');
 var ObjectId = mongodb.ObjectID;
-var url = 'mongodb://localhost:27017/node';
+var url          =  'mongodb://localhost:27017/node';
 
 var insertDocument = function(db,callback){
 	db.collection('restaurants').insertOne({
@@ -29,12 +29,12 @@ var insertDocument = function(db,callback){
       "name" : "Vella",
       "restaurant_id" : "41704620"
    },function(err,result){
-	assert.equal(err,null);
-	console.log('Inserted a document into the restaurants collection.');
-	callback();
-});
-
+		assert.equal(err,null);
+		console.log('Inserted a document into the restaurants collection.');
+		callback();
+	});
 };
+
 MongoClient.connect(url, function(err, db) {
   assert.equal(null, err);
   insertDocument(db, function() {
@@ -42,14 +42,12 @@ MongoClient.connect(url, function(err, db) {
   });
 });
 
-
 //test
 MongoClient.connect(url, function(err, db) {
   assert.equal(null, err);
   console.log("Connected correctly to server.");
   db.close();
 });
-
 
 var dbServer = new mongodb.Server('localhost',27017,{auto_reconnect:true});
 //console.log(dbServer);

@@ -8,5 +8,6 @@ handler['/index'] = requestHandlers.index;
 handler['/start'] = requestHandlers.start;
 handler['/upload'] = requestHandlers.upload;
 handler['/find']  = requestHandlers.find;
+handler['/mongo'] = requestHandlers.mongo;
 
 server.start(router.route,handler);   //函数式编程
