@@ -6,6 +6,11 @@
 var querystring = require("querystring");
 var exec = require('child_process').exec;
 
+var MongoClient = require('mongodb').MongoClient;
+var assert = require('assert');
+var ObjectId = require('mongodb').ObjectID;
+var url = 'mongodb://localhost:27017/test';
+
 function index(response , postData){
     console.log("Request handler 'index' was called.");
 
@@ -62,7 +67,30 @@ function upload(res,postData){
   res.end();
 }
 
+function mongo(res){
+    var findRestaurants = function(db, callback) {
+    var cursor =db.collection('restaurants').find( );
+    cursor.each(function(err, doc) {
+      assert.equal(err, null);
+      if (doc != null) {
+         console.dir(doc);
+      } else {
+         callback();
+      }
+    });
+  };
+
+  MongoClient.connect(url, function(err, db) {
+  assert.equal(null, err);
+  findRestaurants(db, function() {
+      db.close();
+    });
+  });
+
+}
+
 exports.index = index;
 exports.start = start;
 exports.find = find;
 exports.upload = upload;
+exports.mongo = mongo;
