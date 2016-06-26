@@ -114,3 +114,4 @@ exports.start     = start;
 exports.find     = find;
 exports.upload = upload;
 exports.mongofind = mongofind;
+exports.mongodel  = mongodel;
