@@ -68,6 +68,7 @@ function upload(res,postData){
 }
 
 function mongo(res){
+    console.log("request handler ' mongo' was called");
     var findRestaurants = function(db, callback) {
     var cursor =db.collection('restaurants').find( );
     cursor.each(function(err, doc) {
@@ -89,8 +90,8 @@ function mongo(res){
 
 }
 
-exports.index = index;
-exports.start = start;
-exports.find = find;
+exports.index   = index;
+exports.start     = start;
+exports.find     = find;
 exports.upload = upload;
 exports.mongo = mongo;
