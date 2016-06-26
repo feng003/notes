@@ -9,7 +9,7 @@ var exec = require('child_process').exec;
 var MongoClient = require('mongodb').MongoClient;
 var assert = require('assert');
 var ObjectId = require('mongodb').ObjectID;
-var url = 'mongodb://localhost:27017/test';
+var url = 'mongodb://localhost:27017/node';
 
 function index(response , postData){
     console.log("Request handler 'index' was called.");
