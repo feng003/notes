@@ -11,7 +11,8 @@ var crypto = require('crypto'),
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: '首页' });
+    res.json(req.body);
+    res.render('index', { title: '首页' });
 });
 
 router.get('/index', function(req, res, next) {
