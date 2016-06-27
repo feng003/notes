@@ -12,10 +12,12 @@
 
 > 问题二 启动应用
 
+    进入项目目录（microblog）
+
     mac或者linux
-        DEBUG=myapp npm start
+        DEBUG=microblog(目录名称) npm start
     win
-         set DEBUG=myapp & npm start
+         set DEBUG=microblog & npm start
 
 > 问题三 换模板引擎
 

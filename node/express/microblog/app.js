@@ -1,11 +1,13 @@
 var express = require('express');
-var path = require('path');
+var path    = require('path');
 var favicon = require('serve-favicon');
-var logger = require('morgan');
+var logger  = require('morgan');
 var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+var bodyParser   = require('body-parser');
 
 var settings = require('./settings');
+var session = require('./express-session');
+var MongoStore = require('./connect-mongo')(session);
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -33,6 +35,17 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
+
+app.use(session({
+  secret: settings.cookieSecret,
+  key: settings.db,//cookie name
+  cookie: {maxAge: 1000 * 60 * 60 * 24 * 30},//30 days
+  store: new MongoStore({
+    db: settings.db,
+    host: settings.host,
+    port: settings.port
+  })
+}));
 
 // error handlers
 
