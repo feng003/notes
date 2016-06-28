@@ -3,10 +3,10 @@ var fs = require("fs");
 var formidable = require("formidable");
 var exec = require('child_process').exec;
 
-//var MongoClient = require('mongodb').MongoClient;
+var MongoClient = require('mongodb').MongoClient;
 var assert   = require('assert');
-//var ObjectId = require('mongodb').ObjectID;
-//var url      = 'mongodb://localhost:27017/node';
+var ObjectId = require('mongodb').ObjectID;
+var url      = 'mongodb://localhost:27017/node';
 
 function index(response, postData) {
     console.log("Request handler 'index' was called.");
@@ -103,7 +103,7 @@ function upload(res, req) {
     form.parse(req,function(err,fields,files){
         console.log('parsing done');
         console.log(files);
-        fs.renameSync(files.upload.path,"./tmp/test.png");
+        fs.renameSync(files.upload.path,"./tmp/test");
         res.writeHead(200,{"Content-Type": "text/plain"});
         res.write("received image: <br/>");
         res.write("<img src='/show' />");
@@ -113,7 +113,7 @@ function upload(res, req) {
 
 function show(response){
     console.log("Request handler 'show' was called.");
-    fs.readFile("./tmp/test.png", "binary", function(error, file) {
+    fs.readFile("./tmp/test", "binary", function(error, file) {
         if(error) {
             response.writeHead(500, {"Content-Type": "text/plain"});
             response.write(error + "\n");
