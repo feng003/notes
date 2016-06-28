@@ -1,10 +1,12 @@
 var querystring = require("querystring");
+var fs = require("fs");
+var formidable = require("formidable");
 var exec = require('child_process').exec;
 
-var MongoClient = require('mongodb').MongoClient;
+//var MongoClient = require('mongodb').MongoClient;
 var assert   = require('assert');
-var ObjectId = require('mongodb').ObjectID;
-var url      = 'mongodb://localhost:27017/node';
+//var ObjectId = require('mongodb').ObjectID;
+//var url      = 'mongodb://localhost:27017/node';
 
 function index(response, postData) {
     console.log("Request handler 'index' was called.");
@@ -55,12 +57,73 @@ function find(response, postData) {
     });
 }
 
-function upload(res, postData) {
+function home(response){
+    console.log("Request handler 'start' was called.");
+
+    //var body = '<html>'+
+    //    '<head>'+
+    //    '<meta http-equiv="Content-Type" content="text/html; '+
+    //    'charset=UTF-8" />'+
+    //    '</head>'+
+    //    '<body>'+
+    //    '<form action="/upload" method="post">'+
+    //    '<textarea name="text" rows="20" cols="60"></textarea>'+
+    //    '<input type="submit" value="Submit text" />'+
+    //    '</form>'+
+    //    '</body>'+
+    //    '</html>';
+
+    var body = '<html>'+
+        '<head>'+
+        '<meta http-equiv="Content-Type" '+
+        'content="text/html; charset=UTF-8" />'+
+        '</head>'+
+        '<body>'+
+        '<form action="/upload" enctype="multipart/form-data" '+
+        'method="post">'+
+        '<input type="file" name="upload">'+
+        '<input type="submit" value="Upload file" />'+
+        '</form>'+
+        '</body>'+
+        '</html>';
+
+    response.writeHead(200, {"Content-Type": "text/html"});
+    response.write(body);
+    response.end();
+
+}
+
+function upload(res, req) {
     console.log("request handler ' upload' was called");
     // return "hello upload";
-    res.writeHead(200, {"Content-Type": "text/plain"});
-    res.write("You've sent: " + querystring.parse(postData).text);
-    res.end();
+    //res.writeHead(200, {"Content-Type": "text/plain"});
+    //res.write("You've sent: " + querystring.parse(postData).text);
+    //res.end();
+    var form = new formidable.IncomingForm();
+    form.parse(req,function(err,fields,files){
+        console.log('parsing done');
+        console.log(files);
+        fs.renameSync(files.upload.path,"./tmp/test.png");
+        res.writeHead(200,{"Content-Type": "text/plain"});
+        res.write("received image: <br/>");
+        res.write("<img src='/show' />");
+        res.end();
+    })
+}
+
+function show(response){
+    console.log("Request handler 'show' was called.");
+    fs.readFile("./tmp/test.png", "binary", function(error, file) {
+        if(error) {
+            response.writeHead(500, {"Content-Type": "text/plain"});
+            response.write(error + "\n");
+            response.end();
+        } else {
+            response.writeHead(200, {"Content-Type": "image/png"});
+            response.write(file, "binary");
+            response.end();
+        }
+    });
 }
 /**
  * mongo 连接测试
@@ -180,6 +243,7 @@ function mongodel(res) {
 exports.index = index;
 exports.start = start;
 exports.find  = find;
+exports.home  = home;
 exports.upload = upload;
 exports.mongo  = mongo;
 exports.mongoinsert  = mongoinsert;
