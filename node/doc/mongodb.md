@@ -5,9 +5,6 @@
 
 > node and mongo
 
-    
-
-
 
 
 
