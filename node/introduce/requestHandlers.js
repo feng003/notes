@@ -1,11 +1,12 @@
 var querystring = require("querystring");
-var fs = require("fs");
+var fs    = require("fs");
+var util = require("util");
 var formidable = require("formidable");
 var exec = require('child_process').exec;
 
-var MongoClient = require('mongodb').MongoClient;
+// var MongoClient = require('mongodb').MongoClient;
 var assert   = require('assert');
-var ObjectId = require('mongodb').ObjectID;
+// var ObjectId = require('mongodb').ObjectID;
 var url      = 'mongodb://localhost:27017/node';
 
 function index(response, postData) {
@@ -100,26 +101,33 @@ function upload(res, req) {
     //res.write("You've sent: " + querystring.parse(postData).text);
     //res.end();
     var form = new formidable.IncomingForm();
+         form.uploadDir = '/tmp';
     form.parse(req,function(err,fields,files){
-        console.log('parsing done');
-        console.log(files);
-        fs.renameSync(files.upload.path,"/tmp/test");
-        res.writeHead(200,{"Content-Type": "text/plain"});
-        res.write("received image: <br/>");
-        res.write("<img src='/show' />");
+        // console.log('parsing done');
+        // console.log(files);
+        fs.renameSync(files.upload.path,"/tmp/test.png");
+        // var readStream = fs.createReadStream(files.upload.path);
+        // var writeStream = fs.createWriteStream("/tmp/test.png");
+        // util.pump(readStream,writeStream,function(){
+            // fs.unlinkSync(files.upload.path);
+        // });
+        var content = 'received image:'+' <br/>'+'<img src="/show" />';
+        res.writeHead(200,{"Content-Type": "text/html"});
+        res.write(content);
         res.end();
-    })
+    });
 }
 
 function show(response){
     console.log("Request handler 'show' was called.");
-    fs.readFile("/tmp/test", "binary", function(error, file) {
+    fs.readFile("/tmp/test.png", "binary", function(error, file) {
         if(error) {
             response.writeHead(500, {"Content-Type": "text/plain"});
             response.write(error + "\n");
             response.end();
         } else {
             response.writeHead(200, {"Content-Type": "image/png"});
+            // fs.createReadStream("/tmp/test.png").pipe(response);
             response.write(file, "binary");
             response.end();
         }
@@ -241,10 +249,11 @@ function mongodel(res) {
 }
 
 exports.index = index;
-exports.start = start;
+exports.start  = start;
 exports.find  = find;
-exports.home  = home;
+exports.home   = home;
 exports.upload = upload;
+exports.show   = show;
 exports.mongo  = mongo;
 exports.mongoinsert  = mongoinsert;
 exports.mongofind = mongofind;
