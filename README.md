@@ -11,5 +11,3 @@ reading notes
 [javascript](./javascript)
 
 [SQL](./SQL)
-
-[node](./node)
