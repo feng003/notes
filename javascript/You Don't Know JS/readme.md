@@ -11,7 +11,6 @@
 
 [5. 作用域闭包](./作用域和闭包/JavaScript闭包.md)
 
-
 > [this和对象原型](./this和对象原型)
 
 [1. 关于this](./this和对象原型/1.javascript之this.md)
